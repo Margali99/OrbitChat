@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Margali's Orbit 🐾🪐</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="top-bar">
+    <div class="brand-group">
+      <button id="sidebar-toggle" class="icon-btn" title="Toggle Sidebar">☰</button>
+      <div class="brand">Margali's Orbit <span class="brand-badge">🐾🪐</span></div>
+    </div>
+    <div class="controls">
+      <select id="model-select" class="model-dropdown">
+        <option value="gemini/gemini-1.5-flash" selected>✨ Gemini 1.5 Flash</option>
+        <option value="gemini/gemini-3.5-flash-lite">⚡ Gemini 3.5 Flash Lite</option>
+        <option value="gemini/gemini-2.5-flash">🚀 Gemini 2.5 Flash</option>
+        <option value="gemini/gemini-1.5-pro">🧠 Gemini 1.5 Pro</option>
+        <option value="claude-3-5-haiku-20241022">🎭 Claude 3.5 Haiku</option>
+        <option value="grok-beta">⚡ Grok Beta</option>
+      </select>
+      <button id="gear-btn" class="icon-btn" title="API Keys Settings">⚙️</button>
+    </div>
+  </header>
+
+  <div class="app-layout">
+    <!-- Collapsible Sidebar -->
+    <aside id="sidebar" class="sidebar">
+      <button id="new-chat-btn" class="new-chat-btn">➕ New Orbit</button>
+      
+      <div class="sidebar-section">
+        <div class="sidebar-title">Recent Orbits</div>
+        <div id="recent-chats-list" class="recent-chats-list">
+          <div class="chat-item active">Current Conversation</div>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button id="sidebar-keys-btn" class="sidebar-link">🔑 API Keys (BYOK)</button>
+        <div class="sidebar-copy">Margali's Orbit 🐾 v1</div>
+      </div>
+    </aside>
+
+    <!-- Main Chat Workspace -->
+    <main class="main-content">
+      <div id="chat-container" class="chat-container">
+        <!-- Initial Funny Welcome Screen -->
+        <div id="welcome-screen" class="welcome-screen">
+          <div class="cat-avatar">🐱‍🚀</div>
+          <h2>Welcome to Margali's Orbit!</h2>
+          <p class="funny-subtitle">"Purr-fect AI assistance powered by Gemini & friends. No laser pointers required!" 🐾✨</p>
+          
+          <div class="starter-prompts">
+            <div class="prompt-card" data-prompt="Explain quantum physics like I am a curious cat.">
+              <span class="prompt-icon">🐾</span>
+              <span class="prompt-text">Explain quantum physics like I'm a curious cat</span>
+            </div>
+            <div class="prompt-card" data-prompt="Search the web for the latest AI tech breakthroughs today.">
+              <span class="prompt-icon">🌐</span>
+              <span class="prompt-text">Search the web for today's AI breakthroughs</span>
+            </div>
+            <div class="prompt-card" data-prompt="Write a funny adventure story about Margali the space cat orbiting Mars.">
+              <span class="prompt-icon">🚀</span>
+              <span class="prompt-text">Story about Margali the space cat orbiting Mars</span>
+            </div>
+            <div class="prompt-card" data-prompt="Help me brainstorm creative ideas for a new project.">
+              <span class="prompt-icon">💡</span>
+              <span class="prompt-text">Brainstorm creative project ideas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thinking Animation Container -->
+      <div id="thinking-indicator" class="thinking-indicator" style="display: none;">
+        <div class="cat-loader">
+          <span class="paw paw-1">🐾</span>
+          <span class="paw paw-2">🐾</span>
+          <span class="paw paw-3">🐾</span>
+        </div>
+        <span class="thinking-text">Margali is chasing thoughts...</span>
+      </div>
+
+      <!-- Input Bar -->
+      <footer class="input-bar">
+        <input type="file" id="file-input" style="display: none;">
+        <button id="attach-btn" class="icon-btn attach-btn" title="Attach Document">📎</button>
+        <div id="file-indicator" class="file-indicator" style="display: none;"></div>
+        <input type="text" id="message-input" placeholder="Ask Margali anything..." autocomplete="off">
+        <button id="send-btn" class="send-btn">Send 🐾</button>
+      </footer>
+    </main>
+  </div>
+
+  <!-- BYOK Modal -->
+  <div id="keys-modal" class="modal-backdrop" style="display: none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>🔑 API Keys (BYOK)</h3>
+        <button id="close-modal-x" class="modal-close-btn">&times;</button>
+      </div>
+      <p class="modal-desc">Keys are encrypted at rest with Fernet and used only for your chat sessions.</p>
+
+      <label for="gemini-key">Google Gemini Key (AI Studio)</label>
+      <input type="password" id="gemini-key" placeholder="AIzaSy...">
+      
+      <label for="anthropic-key">Anthropic Key (Claude)</label>
+      <input type="password" id="anthropic-key" placeholder="sk-ant-...">
+      
+      <label for="grok-key">xAI Key (Grok)</label>
+      <input type="password" id="grok-key" placeholder="xai-...">
+
+      <div class="modal-actions">
+        <button id="close-modal-btn" class="btn-secondary">Cancel</button>
+        <button id="save-keys-btn" class="btn-primary">Save Keys</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
